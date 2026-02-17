@@ -8,7 +8,7 @@ void kosarajuSharir(const Graph& graph) {
     stack<int> finishStack;
 
     // Step 1: Perform DFS and fill finishStack
-    for (int i = 0; i < V; ++i) {
+    for (int i = 0; i < V; i++) {
         if (!visited[i]) {
             dfs(graph, i, visited, finishStack);
         }
