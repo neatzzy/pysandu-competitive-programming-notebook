@@ -1,0 +1,23 @@
+// Find all prime numbers up to a given limit using the Sieve of Eratosthenes algorithm
+// Time complexity: O(n log log n) where n is the limit
+
+vector<int> findPrimes(int limit) {
+    vector<bool> isPrime(limit + 1, true);
+    isPrime[0] = isPrime[1] = false; // 0 and 1 are not prime numbers
+
+    for (int i = 2; i * i <= limit; i++) {
+        if (isPrime[i]) {
+            for (int j = i * i; j <= limit; j += i) {
+                isPrime[j] = false; // Mark multiples of i as non-prime
+            }
+        }
+    }
+
+    vector<int> primes;
+    for (int i = 2; i <= limit; i++) {
+        if (isPrime[i]) {
+            primes.push_back(i); // Collect prime numbers
+        }
+    }
+    return primes;
+}
