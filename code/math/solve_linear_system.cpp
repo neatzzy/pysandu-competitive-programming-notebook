@@ -8,7 +8,7 @@ double determinant(const vector<vector<double>>& matrix) {
         return matrix[0][0];
     }
     double det = 0.0;
-    for (int col = 0; col < n; ++col) {
+    for (int col = 0; col < n; col++) {
         vector<vector<double>> submatrix(n - 1, vector<double>(n - 1));
         for (int i = 1; i < n; ++i) {
             for (int j = 0; j < n; ++j) {
@@ -32,10 +32,10 @@ vector<double> solveLinearSystem(const vector<vector<double>>& A, const vector<d
     double detA = determinant(A);
 
     vector<double> solution(n);
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
         vector<vector<double>> Ai = A;
         for (int j = 0; j < n; ++j) {
-            Ai[j][i] = b[j]; // Replace the i-th column with the constant vector
+            Ai[j][i] = b[j];
         }
         solution[i] = determinant(Ai) / detA; // Cramer's rule
     }

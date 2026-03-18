@@ -4,7 +4,7 @@ bool isInsidePolygon(const Point& p, const vector<Point>& polygon) {
     int windingNumber = 0;
     int n = polygon.size();
 
-    for (int i = 0; i < n; ++i) {
+    for (int i = 0; i < n; i++) {
         const Point& v1 = polygon[i];
         const Point& v2 = polygon[(i + 1) % n];
 

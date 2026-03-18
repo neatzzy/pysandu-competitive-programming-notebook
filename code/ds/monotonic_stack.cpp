@@ -5,15 +5,15 @@
 vector<int> nextGreaterElements(vector<int>& arr) {
     int n = arr.size();
     vector<int> res(n, -1);
-    stack<int> st; // Stack to store indices
+    stack<int> st;
 
-    for (int i = 0; i < 2 * n; ++i) {
-        int num = arr[i % n]; // Circular array
+    for (int i = 0; i < 2 * n; i++) {
+        int num = arr[i % n];
         while (!st.empty() && arr[st.top()] < num) {
-            res[st.top()] = num; // Update result for the index at the top of the stack
-            st.pop(); // Pop the index from the stack
+            res[st.top()] = num;
+            st.pop();
         }
-        if (i < n) { // Only push indices from the first pass
+        if (i < n) {
             st.push(i);
         }
     }
@@ -28,15 +28,15 @@ vector<int> nextGreaterElements(vector<int>& arr) {
 vector<int> nextSmallerElements(vector<int>& arr) {
     int n = arr.size();
     vector<int> res(n, -1);
-    stack<int> st; // Stack to store indices
+    stack<int> st;
 
     for (int i = 0; i < 2 * n; ++i) {
-        int num = arr[i % n]; // Circular array
+        int num = arr[i % n];
         while (!st.empty() && arr[st.top()] > num) {
-            res[st.top()] = num; // Update result for the index at the top of the stack
-            st.pop(); // Pop the index from the stack
+            res[st.top()] = num;
+            st.pop();
         }
-        if (i < n) { // Only push indices from the first pass
+        if (i < n) {
             st.push(i);
         }
     }
