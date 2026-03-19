@@ -5,5 +5,3 @@
 # - Entries like "meet in the middle" will be replaced by "meet_in_the_middle",
 #   but you can write "meet_in_the_middle" directly if you like
 
-# Progressions
-arithmetic
