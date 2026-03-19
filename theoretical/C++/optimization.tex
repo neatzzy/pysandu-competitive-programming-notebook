@@ -1,0 +1,9 @@
+\subsection{System optimization}
+
+For faster IO, we can use the following code:
+\begin{lstlisting}[language=C++]
+ios::sync_with_stdio(false);
+cin.tie(nullptr);
+cout.tie(nullptr);
+\end{lstlisting}
+This code disables the synchronization between C++ streams and C streams, which can significantly improve the performance of input and output operations. Additionally, it unties the input and output streams, allowing them to operate independently, further enhancing the speed of IO operations.
