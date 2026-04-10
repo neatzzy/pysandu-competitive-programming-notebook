@@ -5,13 +5,15 @@
 int powMod(int x, int n, int MOD){
     int res = 1;
 
-    while(n > 0){
-        if(n&1){
+    while(n >= 1){
+        if(n & 1){
             res = (res * x) % MOD;
+            n--;
         }
         else{
             x = (x * x) % MOD;
-        } n >>= 1;
+            n /= 2;
+        }
     }
     return res;
 }
