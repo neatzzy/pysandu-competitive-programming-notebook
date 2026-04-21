@@ -1,0 +1,7 @@
+\subsection{Modular Inverse Factorial}
+
+\begin{enumerate}
+    \item Calculate $n! \pmod{p}$ for a given prime $p$
+    \item Compute the modular inverse of $n!$ using Fermat's Little Theorem, which states that if $p$ is a prime and $a$ is an integer not divisible by $p$, then $a^{p-1} \equiv 1 \pmod{p}$. Therefore, the modular inverse of $n!$ can be calculated as $(n!)^{p-2} \pmod{p}$.
+    \item Use the precomputed factorial values and their inverses to efficiently compute the modular inverse of $n!$ for multiple queries.
+\end{enumerate}
