@@ -1,0 +1,55 @@
+\subsection{Numerical approximation}
+
+\begin{itemize}
+    \item \textbf{Definition: } A numerical approximation is a method of estimating the value of a mathematical expression or function using numerical techniques. It is often used when an exact solution is difficult or impossible to obtain.
+    \item \textbf{Types of numerical approximation: }
+          \begin{itemize}
+              \item \textbf{Taylor series approximation: } This method uses the derivatives of a function at a specific point to create a polynomial that approximates the function near that point.
+              \item \textbf{Finite difference approximation: } This method approximates the derivative of a function by using the values of the function at nearby points (ex: Newton's method or fixed-point iteration).
+              \item \textbf{Numerical integration: } This method approximates the value of an integral by using numerical techniques such as the trapezoidal rule or Simpson's rule.
+              \item \textbf{Interpolation: } This method estimates the value of a function at a point by using the values of the function at nearby points. Common interpolation methods include linear interpolation and polynomial interpolation.
+              \item \textbf{Euler's method: } This is a numerical method for solving ordinary differential equations (ODEs). It approximates the solution by using the derivative of the function at a specific point to estimate the value of the function at the next point.
+          \end{itemize}
+\end{itemize}
+
+\subsection{Numerical Algorithms}
+
+\begin{itemize}
+    \item \textbf{Newton's Method: }This is an iterative method for finding the roots of a function. It uses the derivative of the function to iteratively improve the approximation of the root. The formula for Newton's method is given by:
+          \[
+              x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
+          \]
+          where \(x_n\) is the current approximation, \(f(x_n)\) is the value of the function at \(x_n\), and \(f'(x_n)\) is the derivative of the function at \(x_n\).
+    \item \textbf{Fixed-point Iteration: } This method is used to find a fixed point of a function, which is a point where the function equals its own value. The iteration formula is given by:
+          \[
+              x_{n+1} = g(x_n)
+          \]
+          where \(g\) is a function that transforms the original problem into a fixed-point problem. The convergence of this method depends on the properties of the function \(g\).
+    \item \textbf{Simpson's Rule: } This is a numerical method for approximating the value of a definite integral. It uses parabolic segments to approximate the area under the curve. The formula for Simpson's rule is given by:
+          \[
+              \int_a^b f(x) \, dx \approx \frac{b - a}{6} [f(a) + 4f\left(\frac{a + b}{2}\right) + f(b)]
+          \]
+          where \(a\) and \(b\) are the limits of integration, and \(f\) is the function being integrated.
+
+    \item \textbf{Trapezoidal Rule: } This is another numerical method for approximating the value of a definite integral. It uses trapezoids to approximate the area under the curve. The formula for the trapezoidal rule is given by:
+          \[
+              \int_a^b f(x) \, dx \approx \frac{b - a}{2} [f(a) + f(b)]
+          \]
+          where \(a\) and \(b\) are the limits of integration, and \(f\) is the function being integrated.
+
+    \item \textbf{Linear Interpolation: } This method estimates the value of a function at a point by using the values of the function at two nearby points. The formula for linear interpolation is given by:
+          \[
+              f(x) \approx f(x_0) + \frac{f(x_1) - f(x_0)}{x_1 - x_0} (x - x_0)
+          \]
+          where \(x_0\) and \(x_1\) are the two nearby points, and \(f(x_0)\) and \(f(x_1)\) are the values of the function at those points. This method is simple and efficient for approximating values within the range of the two points.
+    \item \textbf{Polynomial Interpolation: } This method estimates the value of a function at a point by using the values of the function at multiple nearby points to construct a polynomial that approximates the function. The most common form of polynomial interpolation is Lagrange interpolation, which constructs a polynomial that passes through all the given points. The formula for Lagrange interpolation is given by:
+          \[
+              P(x) = \sum_{i=0}^{n} f(x_i) \prod_{j=0, j \neq i}^{n} \frac{x - x_j}{x_i - x_j}
+          \]
+          where \(x_0, x_1, \ldots, x_n\) are the given points, and \(f(x_i)\) are the values of the function at those points. This method can provide a good approximation for smooth functions but may suffer from Runge's phenomenon if the degree of the polynomial is too high or if the points are not chosen carefully.
+    \item \textbf{Euler's Method: } This is a numerical method for solving ordinary differential equations (ODEs). It approximates the solution by using the derivative of the function at a specific point to estimate the value of the function at the next point. The formula for Euler's method is given by:
+          \[
+              y_{n+1} = y_n + f(t_n, y_n) \Delta t
+          \]
+          where \(y_n\) is the current approximation of the solution, \(f(t_n, y_n)\) is the value of the derivative at the current point, and \(\Delta t\) is the step size. This method is simple and easy to implement but may not be very accurate for stiff equations or when a small step size is required.
+\end{itemize}
