@@ -15,11 +15,7 @@
               \item \textbf{Infinite Solutions: } The system has infinitely many solutions, meaning the equations represent the same line (in 2D) or plane (in 3D).
               \item \textbf{No Solution: } The system has no solution, meaning the equations represent parallel lines (in 2D) or planes (in 3D) that do not intersect.
           \end{itemize}
-
-    \item \textbf{Algorithmic Approach: }
-          \begin{itemize}
-              \item For linear systems, use Gaussian elimination or LU decomposition to find solutions efficiently.
-              \item For nonlinear systems, numerical methods such as Newton's method or fixed-point iteration can be employed to approximate solutions.
-          \end{itemize}
 \end{itemize}
 
+\subsection{Linear System Solving}
+One of the most common types of systems is a system of linear equations, which can be represented in matrix form as $Ax = b$, where $A$ is the coefficient matrix, $x$ is the variable vector, and $b$ is the constant vector. The solution can be found using LU Decomposition, which factors the matrix $A$ into a lower triangular matrix $L$ and an upper triangular matrix $U$. This allows us to solve the system in two steps: first solving $Ly = b$ for $y$, and then solving $Ux = y$ for $x$.

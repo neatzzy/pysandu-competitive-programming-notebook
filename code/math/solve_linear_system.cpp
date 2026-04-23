@@ -1,43 +1,44 @@
-// Solve a system of linear equations using Cramer's rule
-// Time complexity: O(n^4) in the worst case
+// Solve a system of linear equations using LU decomposition
+// Time complexity: O(n^3) for decomposition, O(n^2) for forward and backward substitution
 
-// Function to calculate the determinant of a matrix
-double determinant(const vector<vector<double>>& matrix) {
-    int n = matrix.size();
-    if (n == 1) {
-        return matrix[0][0];
-    }
-    double det = 0.0;
-    for (int col = 0; col < n; col++) {
-        vector<vector<double>> submatrix(n - 1, vector<double>(n - 1));
-        for (int i = 1; i < n; ++i) {
-            for (int j = 0; j < n; ++j) {
-                if (j < col) {      
-                    submatrix[i - 1][j] = matrix[i][j];
-                } else if (j > col) {
-                    submatrix[i - 1][j - 1] = matrix[i][j];
+void luDecomposition(const vector<vector<double>>& A, vector<vector<double>>& L, vector<vector<double>>& U) {
+    int n = A.size();
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i <= j) {
+                U[i][j] = A[i][j];
+                for (int k = 0; k < i; k++) {
+                    U[i][j] -= L[i][k] * U[k][j];
                 }
+            } else {
+                L[i][j] = A[i][j];
+                for (int k = 0; k < j; k++) {
+                    L[i][j] -= L[i][k] * U[k][j];
+                }
+                L[i][j] /= U[j][j];
             }
         }
-        det += (col % 2 == 0 ? 1 : -1) * matrix[0][col] * determinant(submatrix);
     }
-    return det;
 }
 
-// Function to solve a system of linear equations using Cramer's rule
-vector<double> solveLinearSystem(const vector<vector<double>>& A, const vector<double>& b) // A is the coefficient matrix and b is the constant vector
-{
-    int n = A.size();
-
-    double detA = determinant(A);
-
-    vector<double> solution(n);
+void forwardSubstitution(const vector<vector<double>>& L, const vector<double>& b, vector<double>& y) {
+    int n = L.size();
     for (int i = 0; i < n; i++) {
-        vector<vector<double>> Ai = A;
-        for (int j = 0; j < n; ++j) {
-            Ai[j][i] = b[j];
+        y[i] = b[i];
+        for (int j = 0; j < i; j++) {
+            y[i] -= L[i][j] * y[j];
         }
-        solution[i] = determinant(Ai) / detA; // Cramer's rule
     }
-    return solution;
+}
+
+
+void backwardSubstitution(const vector<vector<double>>& U, const vector<double>& y, vector<double>& x) {
+    int n = U.size();
+    for (int i = n - 1; i >= 0; i--) {
+        x[i] = y[i];
+        for (int j = i + 1; j < n; j++) {
+            x[i] -= U[i][j] * x[j];
+        }
+        x[i] /= U[i][i];
+    }
 }
