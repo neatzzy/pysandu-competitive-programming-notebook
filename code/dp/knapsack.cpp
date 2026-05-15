@@ -1,6 +1,6 @@
-// Knapsack problem implementation
-// Time complexity: O(n*w)
-// Space complexity: O(n*w)
+// Knapsack problem implementation using dynamic programming
+// Time complexity: O(n*w), where n is the number of items and w is the maximum weight
+// Space complexity: O(n*w) for the dp table
 
 int knapsack(int w, vector<ii>& items){
     int n = items.size();
