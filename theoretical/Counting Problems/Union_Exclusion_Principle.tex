@@ -1,0 +1,18 @@
+\subsection{Union-Exclusion Principle}
+
+The Union-Exclusion Principle is a fundamental counting technique used to find the number of elements in the union of multiple sets. It states that for any finite sets $A_1, A_2, ..., A_n$, the number of elements in their union can be calculated as follows:
+
+\begin{align*}
+    |A_1 \cup A_2 \cup ... \cup A_n| &= \sum_{i=1}^{n} |A_i| \\
+    &- \sum_{1 \leq i < j \leq n} |A_i \cap A_j| \\
+    &+ \sum_{1 \leq i < j < k \leq n} |A_i \cap A_j \cap A_k| \\
+    &- ... + (-1)^{n+1} |A_1 \cap A_2 \cap ... \cap A_n|
+\end{align*}
+
+In simpler terms, the principle can be broken down into the following steps:
+\begin{itemize}
+    \item Start by summing the sizes of all individual sets.
+    \item Subtract the sizes of all even sized intersections to correct for double counting.
+    \item Add back the sizes of all odd sized intersections to correct for over-subtraction.
+    \item Continue this process, alternating between subtraction and addition, until you reach the intersection of all sets.
+\end{itemize}
