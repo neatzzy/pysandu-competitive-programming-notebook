@@ -1,50 +1,30 @@
-int find(vector<int>& union_find, int a) {
-    vector<int> path;
+// Time complexity: ˜= O(1)
+// Memory complexity: O(n)
 
-    while(union_find[a] >= 0){
-        path.push_back(a);
-        a = union_find[a];
-    }
-
-    for(int vertice : path)
-        union_find[vertice] = a;
-
-    return a;
-}
-
-void unite(vector<int>& union_find, int a, int b) {
-    a = find(union_find, a);
-    b = find(union_find, b);
-
-    if(a == b) return;
-
-    if(abs(union_find[a]) < abs(union_find[b])) swap(a, b);
-
-    union_find[a]+=union_find[b];
-    union_find[b] = a;
-}
-
-// Example usage for Hamming distance problem
-
-class Solution {
+class UnionFind{
+    vector<int> parent;
+    vector<int> setSize;
 public:
-    int minimumHammingDistance(vector<int>& source, vector<int>& target, vector<vector<int>>& allowedSwaps) {
-        vector<int> union_find(source.size(), -1);
-        unordered_map<int, unordered_map<int, int>> count;
-        for(int i = 0; i < allowedSwaps.size(); i++){
-            int a = allowedSwaps[i][0];
-            int b = allowedSwaps[i][1];
-            unite(union_find, a, b);
-        }
-        for(int i = 0; i < source.size(); i++){
-            int group = find(union_find, i);
-            count[group][source[i]]++;
-            count[group][target[i]]--;
-        }
-        int ans = 0;
-        for(auto& pair : count)
-            for(auto& freq : pair.second)
-                ans+=abs(freq.second);
-        return ans/2;
+    UnionFind(int size){
+        parent.resize(size);
+        setSize.assign(size, 1);
+        iota(parent.begin(), parent.end(), 0); // If needed to index by 1, size = size+1
     }
+
+    int find(int i){
+        return parent[i] == i ? i : parent[i] = find(parent[i]);
+    }
+
+    bool join(int I, int J){
+        int i = find(I), j = find(J);
+        if(i == j) return false;
+
+        if(setSize[i] < setSize[j]) swap(i, j);
+
+        parent[i] = j;
+        setSize[i] += setSize[j];
+        return true;
+    }
+
+    int size(int i){ return setSize[find(i)]; }
 };
