@@ -16,15 +16,16 @@ public:
     }
 
     bool join(int I, int J){
-        int i = find(I), j = find(J);
-        if(i == j) return false;
-
-        if(setSize[i] < setSize[j]) swap(i, j);
-
-        parent[i] = j;
-        setSize[i] += setSize[j];
-        return true;
-    }
+    int i = find(I), j = find(J);
+    if(i == j) return false;
+    
+    if(setSize[i] < setSize[j]) swap(i, j);
+    
+    parent[j] = i; 
+    
+    setSize[i] += setSize[j]; 
+    return true;
+}
 
     int size(int i){ return setSize[find(i)]; }
 };
