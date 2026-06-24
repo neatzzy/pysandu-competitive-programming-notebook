@@ -1,9 +1,8 @@
 // Find maximum flow in graph
 // Time complexity: O(|V| * Eˆ2)
 // Space complexity: O(V)
-bool bfs(int residual[V][V], int start, int target, vi parent){
+bool bfs(int residual[V][V], int start, int target, vi& parent) {
     vector<bool> visited(V, false);
-
     queue<int> q;
     q.push(start);
     visited[start] = true;

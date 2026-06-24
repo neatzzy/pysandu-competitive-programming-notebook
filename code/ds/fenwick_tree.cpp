@@ -1,30 +1,27 @@
-// Fenwick Tree to efficiently calculate and update prefix sums of an array of values.
+// Fenwick Tree (1-based index)
 // Time complexity: O(log N) for queries and updates
 
 int sum(int i) {
-  int sum = 0;
-  while(i > 0) {
-    sum += T[i];
-    i -= i & -i; // flip the last bit
-  }
-  return sum;
+    int s = 0;
+    for (; i > 0; i -= i & -i) {
+        s += T[i];
+    }
+    return s;
 }
 
 void add(int i, int k) {
-  while (i < T.size()) {
-    T[i] += k;
-    i += i & -i; // add last set bit
-  }
+    // i deve ser >= 1
+    for (; i < T.size(); i += i & -i) {
+        T[i] += k;
+    }
 }
 
-vi make(vi arr) {
-  vi tree = arr;
-
-  for(int i = 0 ; i < tree.size() ; i++) {
-    int p = i + (i & -i) // index to parent
-    if (p < t.size()) {
-        tree[p] = tree[p] + tree[i];
-      }
-  }
-  return tree;
+// Construção em O(N)
+void make() {
+    for (int i = 1; i < T.size(); i++) {
+        int p = i + (i & -i);
+        if (p < T.size()) {
+            T[p] += T[i];
+        }
+    }
 }

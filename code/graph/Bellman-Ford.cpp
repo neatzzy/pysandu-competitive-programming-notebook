@@ -2,28 +2,25 @@
 // Time Complexity: O(V * E)
 // Space Complexity: O(V)
 
-void bellmanFord(Graph& graph, int src) {
-    int V = graph.size();
+struct Edge { int u, v, weight; };
+
+void bellmanFord(int V, const vector<Edge>& edges, int src) {
     vector<int> dist(V, INT_MAX);
     dist[src] = 0;
 
-    for (int i = 1; i < V; i++) {
-        for (int u = 0; u < V; u++) {
-            for (int v = 0; v < V; v++) {
-                if (graph[u][v] != 0 && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v]) {
-                    dist[v] = dist[u] + graph[u][v];
-                }
+    for (int i = 1; i <= V - 1; i++) {
+        for (const auto& edge : edges) {
+            if (dist[edge.u] != INT_MAX && dist[edge.u] + edge.weight < dist[edge.v]) {
+                dist[edge.v] = dist[edge.u] + edge.weight;
             }
         }
     }
 
     // Check for negative weight cycles
-    for (int u = 0; u < V; u++) {
-        for (int v = 0; v < V; v++) {
-            if (graph[u][v] != 0 && dist[u] != INT_MAX && dist[u] + graph[u][v] < dist[v]) {
-                cout << "Graph contains negative weight cycle" << endl;
-                return;
-            }
+    for (const auto& edge : edges) {
+        if (dist[edge.u] != INT_MAX && dist[edge.u] + edge.weight < dist[edge.v]) {
+            cout << "Graph contains negative weight cycle" << endl;
+            return;
         }
     }
 }

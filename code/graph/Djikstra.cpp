@@ -11,8 +11,11 @@ void dijkstra(const Graph& graph, int src) {
     pq.push({0, src});
 
     while (!pq.empty()) {
+        int d = pq.top().first;
         int u = pq.top().second;
         pq.pop();
+
+        if (d > dist[u]) continue; 
 
         for (const auto& adj : graph[u]) {
             int v = adj.first;
