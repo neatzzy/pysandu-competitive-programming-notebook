@@ -1,4 +1,4 @@
-// Time complexity: ˜= O(1)
+// Time complexity: ≈ O(1) for n < 10^600
 // Memory complexity: O(n)
 
 class UnionFind{
