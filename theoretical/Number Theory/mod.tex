@@ -21,9 +21,17 @@
           Inverse: $a^{-1} \equiv a^{p-2} \pmod p$.
 
     \item \textbf{Power Reduction:}
-          If $p$ is prime: $a^b \equiv a^{b \pmod{p-1}} \pmod p$.
-          General: $a^b \equiv a^{b \pmod{\phi(m)}} \pmod m$ (if $\gcd(a, m) = 1$).
+          If $p$ is prime: $a^b \equiv a^{b \bmod (p-1)} \pmod p$.
+          General: $a^b \equiv a^{b \bmod \phi(m)} \pmod m$ (if $\gcd(a, m) = 1$).
 
     \item \textbf{Bézout's Identity:}
           For $a, b$, there exist $x, y$ such that $ax + by = \gcd(a, b)$.
+          If $\gcd(a, m) = 1$, use Extended Euclidean Algorithm to find $a^{-1} \pmod m$.
+
+    \item \textbf{Chinese Remainder Theorem (CRT):}
+          Given pairwise coprime moduli $m_1, \ldots, m_k$ and remainders $r_1, \ldots, r_k$, there exists a unique $x \pmod{M}$ (where $M = m_1 \cdots m_k$) such that $x \equiv r_i \pmod{m_i}$ for all $i$.
+          \[
+              x = \sum_{i=1}^{k} r_i \cdot \frac{M}{m_i} \cdot \left(\frac{M}{m_i}\right)^{-1}_{\!\!\!\!\mod m_i} \pmod M
+          \]
+          For two moduli: if $x \equiv a \pmod{m}$ and $x \equiv b \pmod{n}$ with $\gcd(m,n)=1$, then $x \equiv a + m \cdot ((b-a) \cdot m^{-1} \bmod n) \pmod{mn}$.
 \end{itemize}

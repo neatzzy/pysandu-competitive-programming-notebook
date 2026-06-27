@@ -2,18 +2,16 @@
 // Time Complexity: O(log n)
 // Space Complexity: O(1)
 
-int powMod(int x, int n, int MOD){
-    int res = 1;
+long long powMod(long long x, long long n, long long MOD){
+    long long res = 1;
+    x %= MOD;
 
     while(n >= 1){
         if(n & 1){
             res = (res * x) % MOD;
-            n--;
         }
-        else{
-            x = (x * x) % MOD;
-            n /= 2;
-        }
+        x = (x * x) % MOD;
+        n /= 2;
     }
     return res;
 }

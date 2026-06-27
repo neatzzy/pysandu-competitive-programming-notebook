@@ -1,9 +1,21 @@
 \subsection{Combination}
 
 \begin{itemize}
-    \item \textbf{Definition: } A combination is a selection of items from a larger set, where the order of selection does not matter. The number of combinations of $n$ distinct objects taken $r$ at a time is given by the formula:
-          $$ C(n, r) = \frac{n!}{r!(n-r)!} $$
-    \item \textbf{Combinations with Repetition: } If repetition of items is allowed, the number of combinations of $n$ distinct objects taken $r$ at a time is given by the formula:
-          $$ C(n + r - 1, r) = \frac{(n + r - 1)!}{r!(n - 1)!} $$
-    \item \textbf{Pascal's Triangle: } The number of combinations can also be found using Pascal's Triangle, where the entry in the $n$-th row and $r$-th column corresponds to $C(n, r)$.
+    \item \textbf{Definition: } Number of ways to choose $r$ items from $n$ (order doesn't matter):
+          $$ \binom{n}{r} = \frac{n!}{r!(n-r)!} $$
+
+    \item \textbf{Key identities: }
+          \begin{itemize}
+              \item Symmetry: $\binom{n}{r} = \binom{n}{n-r}$
+              \item Pascal's recurrence: $\binom{n}{r} = \binom{n-1}{r-1} + \binom{n-1}{r}$
+              \item Vandermonde: $\binom{m+n}{r} = \sum_{k=0}^{r} \binom{m}{k}\binom{n}{r-k}$
+              \item Hockey stick: $\sum_{i=r}^{n} \binom{i}{r} = \binom{n+1}{r+1}$
+          \end{itemize}
+
+    \item \textbf{Combinations with Repetition: } Choose $r$ from $n$ with repetition allowed:
+          $$ \binom{n + r - 1}{r} = \frac{(n + r - 1)!}{r!(n - 1)!} $$
+
+    \item \textbf{Catalan Numbers: } $C_n = \dfrac{1}{n+1}\binom{2n}{n}$. Count: valid bracket sequences of length $2n$, BSTs with $n$ keys, triangulations of $(n+2)$-gon, monotonic lattice paths. $C_0=1, C_1=1, C_2=2, C_3=5, C_4=14$.
+
+    \item \textbf{Pascal's Triangle: } Entry $(n, r)$ gives $\binom{n}{r}$. Build in O($n^2$) using the recurrence; precompute factorials + modular inverses for O(1) per query.
 \end{itemize}

@@ -1,0 +1,32 @@
+\subsection{Probability Fundamentals}
+
+\begin{itemize}
+    \item \textbf{Axioms:}
+          \begin{itemize}
+              \item $0 \leq P(A) \leq 1$; $P(\Omega) = 1$; $P(\emptyset) = 0$
+              \item Union: $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+              \item Complement: $P(\bar{A}) = 1 - P(A)$
+          \end{itemize}
+
+    \item \textbf{Conditional Probability:}
+          $P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}$, \ provided $P(B) > 0$.
+
+    \item \textbf{Independence:} $A$ and $B$ are independent iff $P(A \cap B) = P(A)\,P(B)$.
+
+    \item \textbf{Law of Total Probability:} If $B_1, \ldots, B_n$ partition $\Omega$:
+          \[ P(A) = \sum_{i=1}^{n} P(A \mid B_i)\,P(B_i) \]
+
+    \item \textbf{Bayes' Theorem:}
+          \[ P(B_i \mid A) = \frac{P(A \mid B_i)\,P(B_i)}{\sum_{j} P(A \mid B_j)\,P(B_j)} \]
+
+    \item \textbf{Expected Value:}
+          $E[X] = \sum_{x} x \cdot P(X = x)$ (discrete).
+          Key property: \textbf{Linearity} — $E[X + Y] = E[X] + E[Y]$ holds \textit{even when $X$ and $Y$ are dependent}.
+
+    \item \textbf{Linearity of Expectation (ICPC trick):} To count the expected number of elements satisfying a property, sum the probability that each individual element satisfies it. Example: expected number of fixed points in a random permutation $= n \cdot \frac{1}{n} = 1$.
+
+    \item \textbf{Variance:} $\text{Var}(X) = E[X^2] - E[X]^2 \geq 0$.
+          For independent $X, Y$: $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$.
+
+    \item \textbf{Markov Chains:} A system with states $s_1, \ldots, s_k$ and transition probabilities $P_{ij} = P(\text{go to } s_j \mid \text{in } s_i)$. Transition matrix $T$ satisfies $T^n_{ij}$ = probability of reaching $s_j$ from $s_i$ in exactly $n$ steps. Stationary distribution $\pi$: $\pi T = \pi$, $\sum \pi_i = 1$.
+\end{itemize}

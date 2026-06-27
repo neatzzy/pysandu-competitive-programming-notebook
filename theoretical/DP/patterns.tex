@@ -1,0 +1,35 @@
+\subsection{DP Patterns}
+
+DP applies when a problem has \textbf{overlapping subproblems} and \textbf{optimal substructure} (optimal solution uses optimal solutions to subproblems).
+
+\begin{itemize}
+    \item \textbf{0/1 Knapsack} — O($nW$): each item used at most once.
+          $dp[w] = \max(dp[w],\; dp[w - w_i] + v_i)$. Iterate $w$ \textbf{downward} ($W \to w_i$).
+
+    \item \textbf{Unbounded Knapsack} — O($nW$): each item reusable.
+          Same recurrence but iterate $w$ \textbf{upward} ($w_i \to W$).
+
+    \item \textbf{Longest Common Subsequence (LCS)} — O($nm$):
+          \[ dp[i][j] = \begin{cases} dp[i-1][j-1]+1 & \text{if } s[i]=t[j] \\ \max(dp[i-1][j],\,dp[i][j-1]) & \text{otherwise} \end{cases} \]
+
+    \item \textbf{Edit Distance} — O($nm$): min insertions/deletions/substitutions to turn $s$ into $t$.
+          \[ dp[i][j] = \min\!\left(dp[i-1][j]+1,\; dp[i][j-1]+1,\; dp[i-1][j-1] + [s[i] \neq t[j]]\right) \]
+
+    \item \textbf{LIS} — O($n \log n$): maintain array \texttt{tails} where \texttt{tails[k]} = smallest tail of IS of length $k+1$. For each element, binary search (\texttt{lower\_bound}) for its position.
+
+    \item \textbf{Interval DP} — O($n^3$): solve on subintervals $[l, r]$ using split point $k$.
+          \[ dp[l][r] = \min_{k=l}^{r-1}\!\left(dp[l][k] + dp[k+1][r] + \text{cost}(l,r)\right) \]
+          Classic: Matrix Chain Multiplication, Optimal BST, Burst Balloons.
+
+    \item \textbf{Tree DP}: Root the tree; $dp[v]$ depends only on $dp[\text{children of }v]$. Process in post-order (leaves first). Classic: max independent set on tree, tree diameter, tree centroid.
+
+    \item \textbf{Bitmask DP} — O($2^n \cdot n$): state is a subset of elements.
+          $dp[\text{mask}]$ = optimal for the subset encoded by \texttt{mask}.
+          Classic: TSP in O($2^n \cdot n^2$): $dp[\text{mask}][v] = \min_u(dp[\text{mask}\setminus\{v\}][u] + \text{dist}[u][v])$.
+
+    \item \textbf{Digit DP}: Count integers in $[0, N]$ with a property. State: $(position, tight, \ldots)$ where \texttt{tight} = whether current prefix equals the prefix of $N$.
+
+    \item \textbf{DP on DAG}: Topologically sort the DAG; relax edges in order. Longest/shortest path in DAG is O($V + E$).
+
+    \item \textbf{Prefix Sum DP}: $dp[i][j] = \sum_{k} dp[i-1][k]$ becomes O($n^2$) with prefix sums instead of O($n^3$). Generalize with 2D prefix sums for 2D states.
+\end{itemize}

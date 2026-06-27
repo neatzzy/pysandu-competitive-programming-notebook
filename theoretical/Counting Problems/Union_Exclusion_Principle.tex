@@ -9,10 +9,6 @@ The Union-Exclusion Principle is a fundamental counting technique used to find t
     &- ... + (-1)^{n+1} |A_1 \cap A_2 \cap ... \cap A_n|
 \end{align*}
 
-In simpler terms, the principle can be broken down into the following steps:
-\begin{itemize}
-    \item Start by summing the sizes of all individual sets.
-    \item Subtract the sizes of all even sized intersections to correct for double counting.
-    \item Add back the sizes of all odd sized intersections to correct for over-subtraction.
-    \item Continue this process, alternating between subtraction and addition, until you reach the intersection of all sets.
-\end{itemize}
+In simpler terms: add the sizes of intersections of an \textbf{odd} number of sets; subtract those of an \textbf{even} number of sets. Equivalently, iterate over all $2^n - 1$ non-empty subsets $S \subseteq \{A_1,\ldots,A_n\}$ and add $(-1)^{|S|+1}|\bigcap_{i \in S} A_i|$.
+
+\textbf{Typical use:} count elements satisfying at least one of $n$ properties (complements: count those satisfying none). Common in problems involving divisibility, forbidden configurations, or surjective functions.

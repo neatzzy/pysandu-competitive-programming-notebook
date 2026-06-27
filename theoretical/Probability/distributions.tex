@@ -1,0 +1,28 @@
+\subsection{Common Distributions}
+
+\begin{center}
+\begin{tabular}{lllll}
+\toprule
+\textbf{Distribution} & \textbf{PMF/PDF} & \textbf{E[X]} & \textbf{Var(X)} & \textbf{Use case} \\
+\midrule
+Bernoulli($p$) & $P(1)=p,\,P(0)=1-p$ & $p$ & $p(1-p)$ & Single trial \\
+Binomial($n,p$) & $\binom{n}{k}p^k(1-p)^{n-k}$ & $np$ & $np(1-p)$ & $k$ successes in $n$ trials \\
+Geometric($p$) & $(1-p)^{k-1}p$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$ & Trials until first success \\
+Poisson($\lambda$) & $\frac{\lambda^k e^{-\lambda}}{k!}$ & $\lambda$ & $\lambda$ & Rare events \\
+Uniform($a,b$) & $\frac{1}{b-a}$ & $\frac{a+b}{2}$ & $\frac{(b-a)^2}{12}$ & Continuous uniform \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+    \item \textbf{Geometric distribution:} The expected number of fair-coin flips until the first Head is $E[X] = 1/p = 2$.
+          In competitive programming: \textit{``expected number of times to roll a die until a 6''} $= 6$.
+
+    \item \textbf{Coupon Collector Problem:} Expected number of draws (with replacement, uniform over $n$ types) to collect all $n$ types:
+          \[ E[T] = n \sum_{k=1}^{n} \frac{1}{k} = n \cdot H_n \approx n \ln n \]
+
+    \item \textbf{Negative Binomial:} Expected number of trials until $r$ successes each with probability $p$:
+          \[ E[T] = \frac{r}{p} \]
+
+    \item \textbf{Geometric Probability (Continuous):} Probability of a point falling inside a region $= \dfrac{\text{area of region}}{\text{total area}}$. Common in problems involving random points in squares/circles.
+\end{itemize}

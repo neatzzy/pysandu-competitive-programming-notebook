@@ -93,13 +93,19 @@ def create_notebook(section, blocked):
         aux += '\n\\end{multicols}\n\\end{document}\n'
         texfile.write(aux)
 
+def get_pdflatex_cmd():
+    if os.path.exists('/.flatpak-info'):
+        return ['flatpak-spawn', '--host', 'pdflatex']
+    return ['pdflatex']
+
 def main():
     cpy_template()
     section = get_dir()
     blocked = get_blocked()
     create_notebook(section, blocked)
 
-    cmd = ['pdflatex', '-interaction=nonstopmode', '-halt-on-error',
+    pdflatex = get_pdflatex_cmd()
+    cmd = pdflatex + ['-interaction=nonstopmode', '-halt-on-error',
            'generate_latex/notebook.tex']
     with open(os.devnull, 'w') as DEVNULL:
         try:

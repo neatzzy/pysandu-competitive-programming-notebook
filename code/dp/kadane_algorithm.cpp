@@ -5,7 +5,7 @@ int maxSubArraySum(const vector<int>& arr) {
     int maxSum = arr[0];
     int maxLocal = arr[0];
 
-    for (int i = 0; i < arr.size(); i++) {
+    for (int i = 1; i < (int)arr.size(); i++) {
         maxLocal = max(arr[i], maxLocal + arr[i]);
         maxSum = max(maxSum, maxLocal);
     }

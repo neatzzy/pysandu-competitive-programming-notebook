@@ -1,14 +1,27 @@
 \subsection{Containers}
 
 \begin{itemize}
-    \item \textbf{std::vector: } A dynamic array. Most methods give O(1) time complexity for access and O(N) for insertion/deletion (except at the end, which is O(1)).
-    \item \textbf{std::list: } A doubly linked list. Most methods give O(1) time complexity for insertion/deletion (given an iterator) and O(N) for access.
-    \item \textbf{std::deque: } A double-ended queue. Most methods give O(1) time complexity for access and O(1) for insertion/deletion at both ends, but O(N) for insertion/deletion in the middle.
-    \item \textbf{std::stack: } A container adapter that gives the functionality of a stack (LIFO). Most methods give O(1) time complexity for push, pop, and top operations.
-    \item \textbf{std::queue: } A container adapter that gives the functionality of a queue (FIFO). Most methods give O(1) time complexity for push, pop, and front/back operations.
-    \item \textbf{std::priority\_queue: } A container adapter that gives the functionality of a priority queue. Most methods give O(log N) time complexity for push and pop operations, and O(1) for top operation.
-    \item \textbf{std::set: } A sorted associative container that contains unique elements. Most methods give O(log N) time complexity for insertion, deletion, and search operations.
-    \item \textbf{std::map: } A sorted associative container that contains key-value pairs with unique keys. Most methods give O(log N) time complexity for insertion, deletion, and search operations.
-    \item \textbf{std::unordered\_set: } An unordered associative container that contains unique elements. Most methods give O(1) average time complexity for insertion, deletion, and search operations, but O(N) in the worst case.
-    \item \textbf{std::unordered\_map: } An unordered associative container that contains key-value pairs with unique keys. Most methods give O(1) average time complexity for insertion, deletion, and search operations, but O(N) in the worst case.
+    \item \textbf{std::vector: } Dynamic array. O(1) random access; O(1) amortized push\_back; O($N$) insert/erase at arbitrary position.
+    \item \textbf{std::deque: } Double-ended queue. O(1) push/pop at both ends; O(1) random access; O($N$) insert in middle.
+    \item \textbf{std::stack / std::queue: } Adapters (LIFO/FIFO). O(1) push, pop, top/front.
+    \item \textbf{std::priority\_queue: } Max-heap by default. O($\log N$) push/pop; O(1) top. For min-heap: \texttt{priority\_queue<int, vector<int>, greater<int>>}.
+    \item \textbf{std::set / std::map: } Red-black tree. O($\log N$) insert, erase, find. \texttt{set} keeps elements sorted; \texttt{map} keeps key-value pairs sorted by key. \texttt{lower\_bound}/\texttt{upper\_bound} work on them.
+    \item \textbf{std::multiset / std::multimap: } Like \texttt{set}/\texttt{map} but allow duplicate keys. To erase a single copy: \texttt{s.erase(s.find(x))} (not \texttt{s.erase(x)}, which removes all copies).
+    \item \textbf{std::unordered\_set / std::unordered\_map: } Hash table. O(1) average insert/find/erase; O($N$) worst case. Vulnerable to hash collisions — use a custom hash or \texttt{std::map} if anti-hash tests are suspected.
+    \item \textbf{Policy-based tree (pb\_ds): } \texttt{\_\_gnu\_pbds::tree} supports O($\log N$) \texttt{order\_of\_key(x)} (rank of $x$) and \texttt{find\_by\_order(k)} (k-th element). Useful as an ordered set with rank queries.
 \end{itemize}
+
+\begin{lstlisting}[language=C++]
+// Policy-based ordered set
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+typedef tree<int,null_type,less<int>,
+             rb_tree_tag,
+             tree_order_statistics_node_update> ordered_set;
+
+ordered_set s;
+s.insert(3); s.insert(1); s.insert(5);
+s.order_of_key(3);   // 1  (0-indexed rank)
+*s.find_by_order(0); // 1  (smallest element)
+\end{lstlisting}

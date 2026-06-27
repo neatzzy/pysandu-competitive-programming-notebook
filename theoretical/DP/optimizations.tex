@@ -1,0 +1,25 @@
+\subsection{DP Optimizations}
+
+\begin{itemize}
+    \item \textbf{Space Optimization (Rolling Array):} When $dp[i]$ depends only on $dp[i-1]$, keep only two rows. For knapsack: one 1D array suffices (iterate in the right direction). Reduces O($nW$) space to O($W$).
+
+    \item \textbf{Convex Hull Trick (CHT):} Optimizes recurrences of the form
+          \[ dp[i] = \min_{j < i}\!\left(dp[j] + b[j] \cdot x[i]\right) \]
+          where $b[j]$ is a slope and $x[i]$ is a query point. Maintain a lower convex hull of lines $y = b[j] \cdot x + dp[j]$; query in O(1) (amortized) if $x[i]$ is monotone, or O($\log n$) with binary search. Reduces O($n^2$) to O($n \log n$) or O($n$).
+
+    \item \textbf{Divide \& Conquer Optimization:} Optimizes recurrences of the form
+          \[ dp[i][j] = \min_{k \leq j}\!\left(dp[i-1][k] + C(k, j)\right) \]
+          when the optimal split $\text{opt}(i, j)$ satisfies $\text{opt}(i, j) \leq \text{opt}(i, j+1)$ (\textit{monotone opt}). Solve each layer using D\&C on $j$: $T(n) = O(n \log n)$ per layer. Requires $C$ to satisfy the \textbf{quadrangle inequality}: $C(a,c)+C(b,d) \leq C(a,d)+C(b,c)$ for $a \leq b \leq c \leq d$.
+
+    \item \textbf{Knuth–Yao Optimization:} Specialization for interval DP:
+          \[ dp[l][r] = \min_{l \leq k < r}\!\left(dp[l][k] + dp[k+1][r] + C(l,r)\right) \]
+          If $C$ satisfies the quadrangle inequality, the optimal $k$ is monotone: $\text{opt}[l][r-1] \leq \text{opt}[l][r] \leq \text{opt}[l+1][r]$. This reduces O($n^3$) to \textbf{O($n^2$)}.
+
+    \item \textbf{SMAWK / Divide \& Conquer on Monge Matrices:} When the DP cost matrix is totally monotone (each row's minimum shifts right across rows), the row minima can be found in O($n$) with SMAWK or O($n \log n$) with D\&C.
+
+    \item \textbf{Memoization vs Tabulation:}
+          \begin{itemize}
+              \item \textit{Memoization} (top-down): recurse + cache. Simpler for sparse state spaces or when not all states are needed.
+              \item \textit{Tabulation} (bottom-up): fill table iteratively. Usually faster in practice (no recursion overhead) and easier to optimize space.
+          \end{itemize}
+\end{itemize}

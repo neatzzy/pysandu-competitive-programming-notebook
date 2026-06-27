@@ -1,6 +1,26 @@
 \subsection{Time and memory limits}
 
 \begin{itemize}
-    \item \textbf{1 second limit:} 1 second is usually enough for a program to perform around $10^8$ operations for O(N) algorithms and around $10^6$ operations for O(N log N) algorithms.
-    \item \textbf{256Mb limit:} 256 megabytes is usually enough to store around $10^7$ integers (since each integer typically takes 4 bytes).
+    \item \textbf{Time:} Roughly $10^8$–$10^9$ simple operations per second in C++. Use the table below to estimate the maximum $N$ for a given complexity within a 1–2 second limit.
+    \item \textbf{Memory:} 256 MB $\approx 6.4 \times 10^7$ \texttt{int}s (4 B each) or $3.2 \times 10^7$ \texttt{long long}s (8 B each).
 \end{itemize}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{Complexity} & \textbf{Max $N$ (1–2 s)} \\
+\midrule
+$O(N!)$              & $\leq 12$         \\
+$O(2^N)$             & $\leq 25$         \\
+$O(N^3)$             & $\leq 500$        \\
+$O(N^2)$             & $\leq 5\,000$     \\
+$O(N^2 \log N)$      & $\leq 3\,000$     \\
+$O(N \sqrt{N})$      & $\leq 10^6$       \\
+$O(N \log^2 N)$      & $\leq 10^6$       \\
+$O(N \log N)$        & $\leq 10^7$       \\
+$O(N)$               & $\leq 10^8$       \\
+$O(\sqrt{N})$        & $\leq 10^{14}$    \\
+$O(\log N)$          & $\leq 10^{18}$    \\
+\bottomrule
+\end{tabular}
+\end{center}

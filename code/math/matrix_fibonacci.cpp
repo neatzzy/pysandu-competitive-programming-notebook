@@ -2,7 +2,7 @@
 // Time Complexity: O(log N)
 // Space Complexity: O(1)
 
-void matrixExponentiation(vector<vector<long long>>& matrix, int power) {
+void matrixExponentiation(vector<vector<long long>>& matrix, long long power) {
     int n = matrix.size();
     vector<vector<long long>> result(n, vector<long long>(n, 0));
 
@@ -13,9 +13,9 @@ void matrixExponentiation(vector<vector<long long>>& matrix, int power) {
 
     while (power) {
         if (power % 2 == 1) {
-            matrixMultiplication(result, matrix, result);
+            result = matrixMultiplication(result, matrix);
         }
-        matrixMultiplication(matrix, matrix, matrix);
+        matrix = matrixMultiplication(matrix, matrix);
         power /= 2;
     }
 

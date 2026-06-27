@@ -1,0 +1,52 @@
+\subsection{Strings}
+
+\begin{itemize}
+    \item \textbf{Slicing: } \texttt{s[start:end:step]} — extracts a substring. \texttt{s[::-1]} reverses the string. \texttt{s[::2]} takes every other character. Indices can be negative (\texttt{s[-1]} = last char).
+    \item \textbf{split / join: } \texttt{s.split(sep)} splits into a list; \texttt{sep.join(lst)} joins a list back. \texttt{s.split()} (no arg) splits on any whitespace and removes empty tokens.
+    \item \textbf{strip: } \texttt{s.strip()} removes leading/trailing whitespace. \texttt{s.lstrip(chars)} / \texttt{s.rstrip(chars)} remove specific characters from each side.
+    \item \textbf{find / count: } \texttt{s.find(sub)} returns the first index or \texttt{-1}. \texttt{s.index(sub)} raises \texttt{ValueError} if not found. \texttt{s.count(sub)} counts non-overlapping occurrences.
+    \item \textbf{startswith / endswith: } \texttt{s.startswith(prefix)} and \texttt{s.endswith(suffix)} accept a tuple of strings to check multiple options at once.
+    \item \textbf{Case methods: } \texttt{s.upper()}, \texttt{s.lower()}, \texttt{s.swapcase()}, \texttt{s.title()}, \texttt{s.capitalize()}.
+    \item \textbf{Predicates: } \texttt{s.isdigit()}, \texttt{s.isalpha()}, \texttt{s.isalnum()}, \texttt{s.isspace()}, \texttt{s.islower()}, \texttt{s.isupper()}.
+    \item \textbf{replace: } \texttt{s.replace(old, new, count=-1)} replaces all occurrences by default; pass \texttt{count} to limit.
+    \item \textbf{ord / chr: } \texttt{ord('a') = 97}, \texttt{chr(97) = 'a'}. Useful for converting characters to indices: \texttt{ord(c) - ord('a')}.
+    \item \textbf{Repetition: } \texttt{'ab' * 3 = 'ababab'}. Useful for generating patterns or padding.
+    \item \textbf{Membership: } \texttt{'sub' in s} checks substring in O(n). \texttt{s.index(sub)} finds first occurrence.
+    \item \textbf{Sorting characters: } \texttt{sorted(s)} returns a list of chars; \texttt{''.join(sorted(s))} gives the sorted string. Useful for anagram checks: \texttt{sorted(a) == sorted(b)}.
+    \item \textbf{f-strings: } \texttt{f"\{val:.2f\}"} formats floats. \texttt{f"\{n:0\{w\}b\}"} formats as binary with zero-padding of width \texttt{w}.
+    \item \textbf{zfill / center / ljust / rjust: } \texttt{'7'.zfill(3) = '007'}. \texttt{s.center(width, char)}, \texttt{s.ljust(width)}, \texttt{s.rjust(width)} for alignment.
+    \item \textbf{translate / maketrans: } Efficient character-level substitution or removal.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+s = "hello world"
+
+# Slicing and reversing
+print(s[6:])        # "world"
+print(s[::-1])      # "dlrow olleh"
+
+# Split and join
+words = s.split()               # ["hello", "world"]
+print("-".join(words))          # "hello-world"
+
+# Character index
+idx = ord('c') - ord('a')       # 2
+
+# Anagram check
+print(sorted("listen") == sorted("silent"))  # True
+
+# Remove non-alpha characters
+clean = ''.join(c for c in s if c.isalpha())
+
+# Count occurrences (including overlapping)
+def count_overlap(s, sub):
+    return sum(s[i:i+len(sub)] == sub
+               for i in range(len(s) - len(sub) + 1))
+
+# translate: remove vowels
+table = str.maketrans('', '', 'aeiou')
+print(s.translate(table))       # "hll wrld"
+
+# Format binary with width 8
+print(f"{42:08b}")              # "00101010"
+\end{lstlisting}

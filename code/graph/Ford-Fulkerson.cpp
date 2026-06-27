@@ -12,7 +12,7 @@ bool bfs(int residual[V][V], int start, int target, vi& parent) {
         int u = q.front();
         q.pop();
 
-        for(int v = 0 ; v <= V ; v++){
+        for(int v = 0 ; v < V ; v++){
             if(!visited[v] and residual[u][v] > 0){
                 if(v == target){
                     parent[v] = u;

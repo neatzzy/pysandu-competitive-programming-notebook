@@ -2,8 +2,8 @@
 
 \begin{itemize}
     \item \textbf{Addition Relationship: } $a + b = (a \oplus b) + 2 \cdot (a \land b)$
-    \item \textbf{XOR Relationship: }$a | b = (a \oplus b) + (a \land b)$
-    \item \textbf{AND Relationship: }$a \land b = (a + b) - (a \oplus b)$
+    \item \textbf{OR Relationship: }$a | b = (a \oplus b) + (a \land b)$
+    \item \textbf{AND Relationship: }$a \land b = \dfrac{(a + b) - (a \oplus b)}{2}$
     \item \textbf{Range XOR: } The XOR of all numbers from $1$ to $n$ follows a pattern based on $n \pmod 4$:
           \begin{itemize}
               \item If $n \mod 4 = 0$, then $\text{XOR sum} = n$

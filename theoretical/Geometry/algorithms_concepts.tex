@@ -1,8 +1,10 @@
 \subsection{Algorithms/Concepts}
 
 \begin{itemize}
-    \item \textbf{Convex Hull (Monotone Chain or Graham Scan): }Finds the smallest convex polygon containging all points
-    \item \textbf{Line Segment Intersection: }Using cross products to check if two segments intersect
-    \item \textbf{Point in Polygon: }Using ray casting (winding number) algorithm for O(n) complexity or BSP Tree for O(log n) complexity
-    \item \textbf{Angle of vector: }Use \texttt{atan2(y,x)} to find the angle of a vector.
+    \item \textbf{Convex Hull (Monotone Chain or Graham Scan): }Finds the smallest convex polygon containing all points. O($n \log n$). Monotone Chain is simpler to implement.
+    \item \textbf{Line Segment Intersection: }Two segments $AB$ and $CD$ intersect iff $A, B$ are on opposite sides of line $CD$ AND $C, D$ are on opposite sides of line $AB$. Check using cross products.
+    \item \textbf{Point in Polygon: }Winding number or ray casting in O($n$). Count how many times a ray from the point crosses polygon edges; odd = inside.
+    \item \textbf{Angle of vector: }Use \texttt{atan2(y,x)} to find the angle in $(-\pi, \pi]$. Prefer cross/dot products over angles to avoid float precision issues.
+    \item \textbf{Closest Pair of Points: }Divide and conquer in O($n \log n$). Split by median $x$, recurse, then check strip of width $2d$ around the dividing line (at most 8 candidate points per side).
+    \item \textbf{Rotating Calipers: }Technique to solve problems on convex hulls (diameter, width, minimum bounding rectangle) in O($n$) after the hull is built. Maintain two antipodal points and rotate them around the hull.
 \end{itemize}

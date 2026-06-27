@@ -1,7 +1,14 @@
 \subsection{Algorithms}
 
 \begin{itemize}
-    \item \textbf{std::sort: } The \texttt{std::sort} function in C++ is typically implemented using a hybrid sorting algorithm called Introsort, which combines Quick Sort, Heap Sort, and Insertion Sort. It has an average time complexity of O(N log N).
-    \item \textbf{std::lower\_bound and std::upper\_bound: } These functions are used to find the lower and upper bounds of a value in a sorted range. They have a time complexity of O(log N) since they use binary search.
-    \item \textbf{std::next\_permutation: } This function generates the next lexicographical permutation of a sequence. It is useful for generating all permutations of a sequence in sorted order. The time complexity is O(N) for each call, where N is the length of the sequence.
+    \item \textbf{std::sort: } Hybrid Introsort (Quicksort + Heapsort + Insertion sort). O($N \log N$) average and worst case. Use \texttt{stable\_sort} to preserve relative order of equal elements.
+    \item \textbf{std::lower\_bound / upper\_bound: } Binary search on a sorted range. O($\log N$). \texttt{lower\_bound} returns iterator to first element $\geq x$; \texttt{upper\_bound} returns first element $> x$.
+    \item \textbf{std::binary\_search: } Returns \texttt{true} if $x$ exists in a sorted range. O($\log N$).
+    \item \textbf{std::next\_permutation: } Generates next lexicographic permutation. Returns \texttt{false} when wrapping around. O($N$) per call. Sort the range first to iterate all permutations.
+    \item \textbf{std::accumulate: } Computes the sum (or custom reduction) of a range. O($N$). Default start value is 0; pass \texttt{0LL} if result may overflow \texttt{int}.
+    \item \textbf{std::fill / iota: } \texttt{fill(a, a+n, val)} sets all elements to \texttt{val}. \texttt{iota(a, a+n, start)} fills with \texttt{start, start+1, ...}.
+    \item \textbf{std::min\_element / max\_element: } Return iterator to min/max in a range. O($N$).
+    \item \textbf{std::unique: } Removes consecutive duplicates. Use after \texttt{sort} to deduplicate: \texttt{v.erase(unique(all(v)), v.end())}.
+    \item \textbf{std::reverse: } Reverses a range in-place. O($N$).
+    \item \textbf{\_\_gcd / \_\_lcm: } \texttt{\_\_gcd(a,b)} (C++14) or \texttt{gcd(a,b)} from \texttt{<numeric>} (C++17). O($\log \min(a,b)$).
 \end{itemize}

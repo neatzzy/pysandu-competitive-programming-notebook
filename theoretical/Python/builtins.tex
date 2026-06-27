@@ -1,0 +1,56 @@
+\subsection{Built-ins \& Tricks}
+
+\begin{itemize}
+    \item \textbf{Big integers: } Python integers have arbitrary precision — no overflow, no \texttt{long long} needed. \texttt{2**1000} works natively.
+    \item \textbf{pow(base, exp, mod): } Built-in modular exponentiation in O(log exp). Much faster than \texttt{(base**exp) \% mod}.
+    \item \textbf{divmod(a, b): } Returns \texttt{(a // b, a \% b)} in one call.
+    \item \textbf{int(s, base): } Converts string \texttt{s} in given base to int. \texttt{int('ff', 16) = 255}, \texttt{int('1010', 2) = 10}.
+    \item \textbf{bin / oct / hex: } \texttt{bin(10) = '0b1010'}, \texttt{hex(255) = '0xff'}. Slice \texttt{[2:]} to remove prefix.
+    \item \textbf{enumerate: } \texttt{enumerate(lst)} yields \texttt{(index, value)} pairs. Avoids \texttt{range(len(lst))}.
+    \item \textbf{zip: } \texttt{zip(a, b)} pairs elements. \texttt{zip(*matrix)} transposes a matrix. \texttt{zip\_longest} from \texttt{itertools} handles unequal lengths.
+    \item \textbf{map / filter: } \texttt{list(map(int, input().split()))} reads a line of ints. \texttt{filter(func, lst)} filters in-place lazily.
+    \item \textbf{any / all: } \texttt{any(cond(x) for x in lst)} short-circuits on first \texttt{True}. \texttt{all} short-circuits on first \texttt{False}.
+    \item \textbf{sorted with key: } \texttt{sorted(lst, key=lambda x: -x)} sorts descending. \texttt{sorted(words, key=len)} sorts by length. Stable sort.
+    \item \textbf{min / max with key: } \texttt{max(lst, key=lambda x: x[1])} finds element with max second component.
+    \item \textbf{Multiple assignment: } \texttt{a, b = b, a} swaps without a temp variable. \texttt{a, *rest = lst} unpacks head and tail.
+    \item \textbf{List comprehension: } \texttt{[f(x) for x in lst if cond(x)]} replaces most filter+map patterns. Faster than equivalent loops.
+    \item \textbf{lru\_cache: } \texttt{@functools.lru\_cache(maxsize=None)} memoizes a function. Replaces manual \texttt{dp} dictionaries for recursive solutions.
+    \item \textbf{Fast I/O: } Use \texttt{sys.stdin.read().split()} to read all input at once when input is large.
+    \item \textbf{Global recursion limit: } Default is 1000. Use \texttt{sys.setrecursionlimit(300000)} for deep recursion.
+\end{itemize}
+
+\begin{lstlisting}[language=Python]
+import sys, functools
+input = sys.stdin.readline  # faster input
+
+# Read line of ints
+n, m = map(int, input().split())
+arr  = list(map(int, input().split()))
+
+# Modular exponentiation
+print(pow(2, 10**9, 10**9 + 7))  # O(log exp)
+
+# Transpose matrix
+matrix = [[1,2,3],[4,5,6]]
+T = list(map(list, zip(*matrix)))
+
+# Memoized recursion
+@functools.lru_cache(maxsize=None)
+def dp(i, j):
+    if i == 0: return j
+    if j == 0: return i
+    return min(dp(i-1, j) + 1,
+               dp(i, j-1) + 1,
+               dp(i-1, j-1) + (s[i-1] != t[j-1]))
+
+# Unpack head/tail
+first, *rest = arr
+
+# Flat 2D list comprehension
+flat = [x for row in matrix for x in row]
+
+# Read all input at once
+data = sys.stdin.read().split()
+idx  = 0
+n    = int(data[idx]); idx += 1
+\end{lstlisting}

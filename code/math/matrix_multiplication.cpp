@@ -2,9 +2,9 @@
 // Time Complexity: O(n^3)
 // Space Complexity: O(n^2)
 
-vector<vector<int>> matrixMultiplication(const vector<vector<int>>& A, const vector<vector<int>>& B) {
+vector<vector<long long>> matrixMultiplication(const vector<vector<long long>>& A, const vector<vector<long long>>& B) {
     int n = A.size();
-    vector<vector<int>> C(n, vector<int>(n, 0)); // Initialize result matrix with zeros
+    vector<vector<long long>> C(n, vector<long long>(n, 0));
 
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {

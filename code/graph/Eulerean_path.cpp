@@ -1,7 +1,7 @@
 // Find the Eulerian path in a graph using Hierholzer's algorithm
 // Time complexity: O(E) where E is the number of edges in the graph
 
-void findEulerianPath(const vector<vector<int>>& graph, int start, vector<int>& path) {
+void findEulerianPath(vector<vector<int>> graph, int start, vector<int>& path) {
     stack<int> s;
     s.push(start);
 
